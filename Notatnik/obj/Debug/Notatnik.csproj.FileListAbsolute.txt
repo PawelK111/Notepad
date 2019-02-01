@@ -8,3 +8,13 @@ C:\Users\Paweł Kulewicz\Desktop\Projekty C#\Notatnik\Notatnik\obj\Debug\Notatni
 C:\Users\Paweł Kulewicz\Desktop\Projekty C#\Notatnik\Notatnik\obj\Debug\Notatnik.csproj.CoreCompileInputs.cache
 C:\Users\Paweł Kulewicz\Desktop\Projekty C#\Notatnik\Notatnik\obj\Debug\Notatnik.exe
 C:\Users\Paweł Kulewicz\Desktop\Projekty C#\Notatnik\Notatnik\obj\Debug\Notatnik.pdb
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\bin\Debug\Notatnik.exe.config
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\bin\Debug\Notatnik.exe
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\bin\Debug\Notatnik.pdb
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\obj\Debug\Notatnik.csprojAssemblyReference.cache
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\obj\Debug\Notatnik.Form1.resources
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\obj\Debug\Notatnik.Properties.Resources.resources
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\obj\Debug\Notatnik.csproj.GenerateResource.cache
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\obj\Debug\Notatnik.csproj.CoreCompileInputs.cache
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\obj\Debug\Notatnik.exe
+C:\Users\Paweł Kulewicz\Documents\GitHub\Notatnik\Notatnik\obj\Debug\Notatnik.pdb

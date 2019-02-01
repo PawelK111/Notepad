@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Drawing.Printing;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -69,10 +71,10 @@ namespace Notatnik
         private void czcionkaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FontDialog fd = new FontDialog();
-            fd.Font = richTextBox1.SelectionFont;
+            fd.Font = richTextBox1.Font;
             if (fd.ShowDialog() == DialogResult.OK)
             {
-                richTextBox1.SelectionFont = fd.Font;
+                richTextBox1.Font = fd.Font;
             }
         }
 
@@ -84,5 +86,49 @@ namespace Notatnik
                 richTextBox1.BackColor = cr.Color;
             }
         }
+
+        private void drukujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDialog1.Document = printDocument1;
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                StringReader reader = new StringReader(richTextBox1.Text);
+                printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
+                printDocument1.Print();
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            StringReader reader = new StringReader(richTextBox1.Text);
+            float YPosition = 0;
+            float LeftMargin = e.MarginBounds.Left;
+            float TopMargin = e.MarginBounds.Top;
+            string Line = null;
+            SolidBrush PrintBrush = new SolidBrush(Color.Black);
+            
+            float LinesPerPage = e.MarginBounds.Height / richTextBox1.Font.GetHeight(e.Graphics);
+
+            for (int count = 0; count < LinesPerPage && ((Line = reader.ReadLine()) != null); count ++)
+                {
+                YPosition = TopMargin + (count * richTextBox1.Font.GetHeight(e.Graphics));
+                e.Graphics.DrawString(Line, richTextBox1.Font, PrintBrush, LeftMargin, YPosition, new StringFormat()); 
+            }
+            if (Line != null)
+            {
+                e.HasMorePages = true;
+            }
+            else
+            {
+                e.HasMorePages = false;
+            }
+            PrintBrush.Dispose();
+        }
+
+        private void godzinaDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Text += DateTime.Now.ToString("HH:mm") + " " + DateTime.Now.ToString("dd.MM.yyyy");
+        }
     }
-}
+    }
+

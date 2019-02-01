@@ -35,6 +35,8 @@
             this.nowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otwórzToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drukujToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.zakończToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.edycjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cofnijToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,6 +49,10 @@
             this.zmianaKoloruTłaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.godzinaDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +83,8 @@
             this.otwórzToolStripMenuItem,
             this.zapiszToolStripMenuItem,
             toolStripMenuItem2,
+            this.drukujToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.zakończToolStripMenuItem});
             this.plikToolStripMenuItem.Name = "plikToolStripMenuItem";
             this.plikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
@@ -106,6 +114,19 @@
             this.zapiszToolStripMenuItem.Text = "Zapisz";
             this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.zapiszToolStripMenuItem_Click);
             // 
+            // drukujToolStripMenuItem
+            // 
+            this.drukujToolStripMenuItem.Name = "drukujToolStripMenuItem";
+            this.drukujToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.drukujToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.drukujToolStripMenuItem.Text = "Drukuj";
+            this.drukujToolStripMenuItem.Click += new System.EventHandler(this.drukujToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
             // zakończToolStripMenuItem
             // 
             this.zakończToolStripMenuItem.Name = "zakończToolStripMenuItem";
@@ -120,7 +141,9 @@
             this.toolStripMenuItem4,
             this.wytnijToolStripMenuItem,
             this.kopiujToolStripMenuItem,
-            this.wklejToolStripMenuItem});
+            this.wklejToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.godzinaDataToolStripMenuItem});
             this.edycjaToolStripMenuItem.Name = "edycjaToolStripMenuItem";
             this.edycjaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.edycjaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
@@ -175,14 +198,14 @@
             // czcionkaToolStripMenuItem
             // 
             this.czcionkaToolStripMenuItem.Name = "czcionkaToolStripMenuItem";
-            this.czcionkaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.czcionkaToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.czcionkaToolStripMenuItem.Text = "Czcionka";
             this.czcionkaToolStripMenuItem.Click += new System.EventHandler(this.czcionkaToolStripMenuItem_Click);
             // 
             // zmianaKoloruTłaToolStripMenuItem
             // 
             this.zmianaKoloruTłaToolStripMenuItem.Name = "zmianaKoloruTłaToolStripMenuItem";
-            this.zmianaKoloruTłaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zmianaKoloruTłaToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.zmianaKoloruTłaToolStripMenuItem.Text = "Zmiana koloru tła";
             this.zmianaKoloruTłaToolStripMenuItem.Click += new System.EventHandler(this.zmianaKoloruTłaToolStripMenuItem_Click);
             // 
@@ -201,6 +224,27 @@
             this.richTextBox1.Size = new System.Drawing.Size(936, 645);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // godzinaDataToolStripMenuItem
+            // 
+            this.godzinaDataToolStripMenuItem.Name = "godzinaDataToolStripMenuItem";
+            this.godzinaDataToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.godzinaDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.godzinaDataToolStripMenuItem.Text = "Godzina/Data";
+            this.godzinaDataToolStripMenuItem.Click += new System.EventHandler(this.godzinaDataToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // Form1
             // 
@@ -240,6 +284,12 @@
         private System.Windows.Forms.ToolStripMenuItem otwórzToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zakończToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drukujToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem godzinaDataToolStripMenuItem;
     }
 }
 
