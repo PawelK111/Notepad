@@ -21,25 +21,30 @@ namespace Notatnik
 
         private void nowyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            richTextBox1.Clear();
+            textBox1.Clear();
+            this.Text = "Bez tytułu - Notatnik";
         }
         private void otwórzToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            OpenFileDialog op = new OpenFileDialog();
-            op.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
-            if (op.ShowDialog() == DialogResult.OK)
-                richTextBox1.LoadFile(op.FileName, RichTextBoxStreamType.PlainText);
-            this.Text = op.FileName;
+            // OpenFileDialog op = new OpenFileDialog();
+            //  op.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
+            ///  if (op.ShowDialog() == DialogResult.OK)
+            //      textBox1.LoadFile(op.FileName, RichTextBoxStreamType.PlainText);
+          //  this.Text = op.FileName;
         }
 
         private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sv = new SaveFileDialog();
-            sv.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
-            if (sv.ShowDialog() == DialogResult.OK)
-                richTextBox1.SaveFile(sv.FileName, RichTextBoxStreamType.PlainText);
-              this.Text = sv.FileName;
+           
+                SaveFileDialog sv = new SaveFileDialog();
+                sv.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
+                if (sv.ShowDialog() == DialogResult.OK)
+                {
+                    System.IO.File.WriteAllText(sv.FileName, textBox1.Text);
+                    this.Text = sv.FileName;
+                }
+
         }
 
         private void zakończToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,32 +54,32 @@ namespace Notatnik
 
         private void cofnijToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            richTextBox1.Undo();
+            textBox1.Undo();
             
         }
 
         private void wytnijToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            richTextBox1.Cut();
+            textBox1.Cut();
         }
 
         private void kopiujToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            richTextBox1.Copy();
+            textBox1.Copy();
         }
 
         private void wklejToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            richTextBox1.Paste();
+            textBox1.Paste();
         }
 
         private void czcionkaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FontDialog fd = new FontDialog();
-            fd.Font = richTextBox1.Font;
+            fd.Font = textBox1.Font;
             if (fd.ShowDialog() == DialogResult.OK)
             {
-                richTextBox1.Font = fd.Font;
+                textBox1.Font = fd.Font;
             }
         }
 
@@ -83,7 +88,7 @@ namespace Notatnik
             ColorDialog cr = new ColorDialog();
             if (cr.ShowDialog() == DialogResult.OK)
             {
-                richTextBox1.BackColor = cr.Color;
+                textBox1.BackColor = cr.Color;
             }
         }
 
@@ -92,7 +97,7 @@ namespace Notatnik
             printDialog1.Document = printDocument1;
             if (printDialog1.ShowDialog() == DialogResult.OK)
             {
-                StringReader reader = new StringReader(richTextBox1.Text);
+                StringReader reader = new StringReader(textBox1.Text);
                 printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage);
                 printDocument1.Print();
             }
@@ -100,19 +105,19 @@ namespace Notatnik
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            StringReader reader = new StringReader(richTextBox1.Text);
+            StringReader reader = new StringReader(textBox1.Text);
             float YPosition = 0;
             float LeftMargin = e.MarginBounds.Left;
             float TopMargin = e.MarginBounds.Top;
             string Line = null;
             SolidBrush PrintBrush = new SolidBrush(Color.Black);
             
-            float LinesPerPage = e.MarginBounds.Height / richTextBox1.Font.GetHeight(e.Graphics);
+            float LinesPerPage = e.MarginBounds.Height / textBox1.Font.GetHeight(e.Graphics);
 
             for (int count = 0; count < LinesPerPage && ((Line = reader.ReadLine()) != null); count ++)
                 {
-                YPosition = TopMargin + (count * richTextBox1.Font.GetHeight(e.Graphics));
-                e.Graphics.DrawString(Line, richTextBox1.Font, PrintBrush, LeftMargin, YPosition, new StringFormat()); 
+                YPosition = TopMargin + (count * textBox1.Font.GetHeight(e.Graphics));
+                e.Graphics.DrawString(Line, textBox1.Font, PrintBrush, LeftMargin, YPosition, new StringFormat()); 
             }
             if (Line != null)
             {
@@ -127,7 +132,7 @@ namespace Notatnik
 
         private void godzinaDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            richTextBox1.Text += DateTime.Now.ToString("HH:mm") + " " + DateTime.Now.ToString("dd.MM.yyyy");
+            textBox1.Text += DateTime.Now.ToString("HH:mm") + " " + DateTime.Now.ToString("dd.MM.yyyy");
         }
     }
     }
