@@ -26,27 +26,24 @@ namespace Notatnik
         }
         private void otwórzToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            // OpenFileDialog op = new OpenFileDialog();
-            //  op.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
-            ///  if (op.ShowDialog() == DialogResult.OK)
-            //      textBox1.LoadFile(op.FileName, RichTextBoxStreamType.PlainText);
-          //  this.Text = op.FileName;
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                textBox1.Text = File.ReadAllText(op.FileName);
+            }
         }
 
         private void zapiszToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
-                SaveFileDialog sv = new SaveFileDialog();
-                sv.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
-                if (sv.ShowDialog() == DialogResult.OK)
-                {
-                    System.IO.File.WriteAllText(sv.FileName, textBox1.Text);
-                    this.Text = sv.FileName;
-                }
+            SaveFileDialog sv = new SaveFileDialog();
+            sv.Filter = "Dokumenty tekstowe(*.txt)|*.txt|Wszystkie pliki(*.*)|*.*";
+            if (sv.ShowDialog() == DialogResult.OK)
+            {       
+                System.IO.File.WriteAllText(sv.FileName, textBox1.Text);  
+            }
 
         }
-
         private void zakończToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
